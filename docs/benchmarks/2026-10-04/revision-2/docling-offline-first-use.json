@@ -1,0 +1,19 @@
+{
+  "network": "none",
+  "scope": "fresh Docling process with staged local OCR/layout/table artifacts",
+  "results": [
+    {
+      "file": "synthetic-sensor-scan.pdf",
+      "elapsed_s": 20.283,
+      "items": 2,
+      "expected_tokens_found": true
+    },
+    {
+      "file": "synthetic-sensor-table.pdf",
+      "elapsed_s": 2.687,
+      "items": 2,
+      "expected_tokens_found": true
+    }
+  ],
+  "passed": true
+}

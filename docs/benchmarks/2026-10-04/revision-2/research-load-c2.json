@@ -1,0 +1,64 @@
+{
+  "count": 4,
+  "concurrency": 2,
+  "completed_with_report": 4,
+  "statuses": {
+    "completed": 4
+  },
+  "wall_time_s": 400.143,
+  "researches_per_min": 0.6,
+  "successful_rps": 0.009996,
+  "timeout_rate": 0.0,
+  "noncompletion_rate": 0.0,
+  "latency_population": "completed_with_report_only",
+  "research_p50_ms": 198963.0,
+  "research_p95_ms": 201169.0,
+  "research_p99_ms": 201169.0,
+  "overall_completion_p95_ms": 201169.0,
+  "overall_completion_p95_note": null,
+  "first_event_observed_count": 4,
+  "first_event_p50_ms": 20.0,
+  "first_event_p95_ms": 80.0,
+  "queue_p95_ms": 99925.0,
+  "execution_p95_ms": 99829.0,
+  "samples": [
+    {
+      "research_id": "9f0a88f4-ec13-480c-b13e-dc51244e9498",
+      "status": "completed",
+      "report_available": true,
+      "elapsed_s": 100.619,
+      "first_event_s": 0.073,
+      "queue_s": 0.705,
+      "execution_s": 99.271
+    },
+    {
+      "research_id": "1104ed18-b971-46ab-8ec1-2b316fa6e18c",
+      "status": "completed",
+      "report_available": true,
+      "elapsed_s": 201.169,
+      "first_event_s": 0.08,
+      "queue_s": 99.925,
+      "execution_s": 99.427
+    },
+    {
+      "research_id": "290b1196-c0df-4506-8cb9-02be6cc7097d",
+      "status": "completed",
+      "report_available": true,
+      "elapsed_s": 199.042,
+      "first_event_s": 0.016,
+      "queue_s": 98.795,
+      "execution_s": 99.287
+    },
+    {
+      "research_id": "f7488c73-1351-4fb3-8ad8-2d678e184979",
+      "status": "completed",
+      "report_available": true,
+      "elapsed_s": 198.963,
+      "first_event_s": 0.02,
+      "queue_s": 97.538,
+      "execution_s": 99.829
+    }
+  ],
+  "started_at": "2026-10-04T18:49:25.608383+00:00",
+  "finished_at": "2026-10-04T18:56:06.730997+00:00"
+}

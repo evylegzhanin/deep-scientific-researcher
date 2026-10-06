@@ -1,0 +1,46 @@
+{
+  "count": 2,
+  "concurrency": 1,
+  "completed_with_report": 2,
+  "statuses": {
+    "completed": 2
+  },
+  "wall_time_s": 202.956,
+  "researches_per_min": 0.59,
+  "successful_rps": 0.009854,
+  "timeout_rate": 0.0,
+  "noncompletion_rate": 0.0,
+  "latency_population": "completed_with_report_only",
+  "research_p50_ms": 100428.0,
+  "research_p95_ms": 102519.0,
+  "research_p99_ms": 102519.0,
+  "overall_completion_p95_ms": 102519.0,
+  "overall_completion_p95_note": null,
+  "first_event_observed_count": 2,
+  "first_event_p50_ms": 16.0,
+  "first_event_p95_ms": 17.0,
+  "queue_p95_ms": 1958.0,
+  "execution_p95_ms": 99509.0,
+  "samples": [
+    {
+      "research_id": "b266a2cc-ffa1-40ab-861f-79307d155fff",
+      "status": "completed",
+      "report_available": true,
+      "elapsed_s": 102.519,
+      "first_event_s": 0.017,
+      "queue_s": 1.958,
+      "execution_s": 99.509
+    },
+    {
+      "research_id": "d17818b1-871e-456c-bc87-ac33ef199f86",
+      "status": "completed",
+      "report_available": true,
+      "elapsed_s": 100.428,
+      "first_event_s": 0.016,
+      "queue_s": 0.954,
+      "execution_s": 99.16
+    }
+  ],
+  "started_at": "2026-10-04T18:46:01.668107+00:00",
+  "finished_at": "2026-10-04T18:49:25.608026+00:00"
+}

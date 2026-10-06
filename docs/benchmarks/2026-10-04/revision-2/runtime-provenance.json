@@ -1,0 +1,77 @@
+{
+  "captured_at": "2026-10-04T19:47:25.783188+00:00",
+  "containers": {
+    "api": {
+      "image_id": "sha256:98c4c8ce2b0a67f7fa8797931b0dda2a7e33a54d56da3b0c62508154f0e5227a",
+      "image_reference": "research-backend:revision2",
+      "started_at": "2026-10-04T19:41:21.896832439Z",
+      "environment": {
+        "GRAPH_RETRIEVAL_ENABLED": "true",
+        "APP_MODE": "airgap",
+        "HF_HUB_OFFLINE": "1",
+        "OMP_NUM_THREADS": "4",
+        "TEXT_MODEL": "research-text",
+        "TRANSFORMERS_OFFLINE": "1",
+        "VISION_MODEL": "research-text"
+      }
+    },
+    "worker": {
+      "image_id": "sha256:98c4c8ce2b0a67f7fa8797931b0dda2a7e33a54d56da3b0c62508154f0e5227a",
+      "image_reference": "research-backend:revision2",
+      "started_at": "2026-10-04T19:44:24.706779851Z",
+      "environment": {
+        "VISION_MODEL": "research-text",
+        "APP_MODE": "airgap",
+        "TEXT_MODEL": "research-text",
+        "TRANSFORMERS_OFFLINE": "1",
+        "GRAPH_RETRIEVAL_ENABLED": "true",
+        "OMP_NUM_THREADS": "4",
+        "HF_HUB_OFFLINE": "1"
+      }
+    },
+    "model": {
+      "image_id": "sha256:8a69ffad015f138d7170c4ddc429e230a3bc1c1719f67e14324749df200a4b90",
+      "image_reference": "vllm/vllm-openai@sha256:8a69ffad015f138d7170c4ddc429e230a3bc1c1719f67e14324749df200a4b90",
+      "started_at": "2026-10-04T19:41:21.442272334Z",
+      "environment": {
+        "TRANSFORMERS_OFFLINE": "1",
+        "HF_HUB_OFFLINE": "1"
+      }
+    },
+    "frontend": {
+      "image_id": "sha256:1c7ca6725ad1ed700292c387d9d351a4a7f1211aa8c09a94f8ad3e0da3a1e066",
+      "image_reference": "research-frontend:70d4442",
+      "started_at": "2026-10-04T19:41:21.234586906Z",
+      "environment": {}
+    }
+  },
+  "runtime_backend_sha256": {
+    "backend/config.py": "e6a39d6a402604d3b1d9098871f34dbf4c40df1e5506b2503ef4a1c5c575c2d5",
+    "backend/report_review.py": "9265a57890d3024708bcf0da384d046ac72a180229579708fb3d765851b52c86",
+    "backend/report_pdf.py": "7dc1f377730d31d010e127bb61b0a2e271c2dcb7fe33b8e73bbee6e3779da22e",
+    "backend/db.py": "42b610809128e8935f7fd935a59810d6cba395f9cd047aa9727520cdeb243268",
+    "backend/guardrails.py": "86579e7589bdbc81957d744f6617028efa8149524da86191a1fee23f5fce73f5",
+    "backend/worker.py": "d9c0bea9d8f738f4fbc5e7546a8ab2898e4a2f12ea900afd1759948804b6184b",
+    "backend/research.py": "50e75b8435197e564fa55ececb6928ac3e35f2494c264b1d68f5f65b679776f5",
+    "backend/jobs.py": "c12e7f9005790dca8594dc7046d6f3445799a17e567d27f07f20de4d05502f17",
+    "backend/sources.py": "d80f99de4e8570789a1c947d9b6cbec0846daa6cab48596bb954a3c7326032fa",
+    "backend/secrets.py": "91a8f12e2491c07269ef74dd15819fcd908a77ac08fbf90a4227a6270a3e4d59",
+    "backend/__init__.py": "ae6a086ed3bd5719f572b511d1a30512a0ac76f490576510036f47cb17db75a1",
+    "backend/retrieval.py": "a6927e0b87b7b93a65b15056c49c161832e6c67a6d6ba9bcab0060cc9699ccca",
+    "backend/access.py": "6459e884dc7a7cf9ec8a44f4e10c69af3c49c8fc450106287e80e8153744b908",
+    "backend/auth.py": "e8443d12e5a4ee168f97bb75ec42ad0da29e62eedc6c10738d779c2c65facfce",
+    "backend/api.py": "d92eaf9d2dbbedef8dd8982128dd82393fbade6eda4b0eb1edec4fd2f7a0f901",
+    "backend/vision.py": "f3a69fabefba3f6ececfe0186da45634a85d186f4e8fc4441e51374683c93663",
+    "backend/telemetry.py": "c6af8fc569dbd1dd6bbead7cdc374fb80e1d1cec671d5172c1a3cbb7e47984d9",
+    "backend/ingestion.py": "e5ca73741d7f034d476c7999807e24e20b83bcf3046b831136ab395d7406814a",
+    "backend/models.py": "7f3a05312226b73bc60f2ec86eef08ffe85193f9b5ac38fe732853582d99e094",
+    "backend/schema.sql": "0308b344bbf49b918cdc088f843eb0408c4861d5445562937d771c356fd291d2",
+    "backend/packages.py": "0e8e83b38e3e2359f8311f5ed40c2c7d8c43d14785e2ba0f40534f4a91bfac01",
+    "backend/audit.py": "2ba5e015f3777fdacc0c806a0df86667fa8132e45cb7d6e23e06dff54de7a72b",
+    "backend/reranking.py": "588311028a54f651a47bac2c9115ee3ce613838e8106fbe511f575f0692aec52",
+    "backend/knowledge_graph.py": "64c680f853bb2aaef03ea208a1e41338c7b6bd3ac0be4276d4e79ff74d64a328"
+  },
+  "host_backend_matches_runtime": true,
+  "mismatched_backend_files": [],
+  "scope": "current runtime image identity and backend hashes after reboot; code archive scripts include later collector refinements"
+}

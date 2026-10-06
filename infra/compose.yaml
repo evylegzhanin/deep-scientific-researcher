@@ -1,0 +1,142 @@
+name: deep-scientific-researcher
+services:
+  postgres:
+    image: postgres:16-alpine
+    environment:
+      POSTGRES_DB: research
+      POSTGRES_USER: research
+      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD:-research-dev-only}
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+    ports:
+      - "127.0.0.1:5434:5432"
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U research -d research"]
+      interval: 5s
+      timeout: 3s
+      retries: 10
+    restart: unless-stopped
+
+  qdrant:
+    image: qdrant/qdrant:v1.19.1
+    volumes:
+      - qdrant_data:/qdrant/storage
+    ports:
+      - "127.0.0.1:6333:6333"
+    restart: unless-stopped
+
+  api:
+    profiles: ["full"]
+    build:
+      context: ..
+      dockerfile: backend/Dockerfile
+    env_file: ../.env
+    environment:
+      DATABASE_URL: postgresql://research:${POSTGRES_PASSWORD:-research-dev-only}@postgres:5432/research
+      QDRANT_URL: http://qdrant:6333
+      FILE_ROOT: /data/files
+      PDF_PARSER: docling
+      DOCLING_ARTIFACTS_PATH: /models/docling
+      OTEL_EXPORTER_OTLP_ENDPOINT: ${OTEL_EXPORTER_OTLP_ENDPOINT:-}
+    volumes:
+      - documents_data:/data/files
+      - ${MODEL_ARTIFACTS_DIR:-../data/models}:/models:ro
+      - ${OPENBAO_CLIENT_DIR:-../data/openbao-client}:/run/openbao:ro
+    depends_on:
+      postgres: { condition: service_healthy }
+      qdrant: { condition: service_started }
+    restart: unless-stopped
+
+  worker:
+    profiles: ["full"]
+    build:
+      context: ..
+      dockerfile: backend/Dockerfile
+    command: ["python", "-m", "backend.worker"]
+    env_file: ../.env
+    environment:
+      DATABASE_URL: postgresql://research:${POSTGRES_PASSWORD:-research-dev-only}@postgres:5432/research
+      QDRANT_URL: http://qdrant:6333
+      FILE_ROOT: /data/files
+      PDF_PARSER: docling
+      DOCLING_ARTIFACTS_PATH: /models/docling
+      OTEL_EXPORTER_OTLP_ENDPOINT: ${OTEL_EXPORTER_OTLP_ENDPOINT:-}
+    volumes:
+      - documents_data:/data/files
+      - ${MODEL_ARTIFACTS_DIR:-../data/models}:/models:ro
+      - ${OPENBAO_CLIENT_DIR:-../data/openbao-client}:/run/openbao:ro
+    depends_on:
+      postgres: { condition: service_healthy }
+      qdrant: { condition: service_started }
+    restart: unless-stopped
+
+  frontend:
+    profiles: ["full"]
+    build:
+      context: ..
+      dockerfile: frontend/Dockerfile
+    ports:
+      - "127.0.0.1:8080:80"
+    depends_on:
+      - api
+    restart: unless-stopped
+
+  otel-collector:
+    profiles: ["observability"]
+    image: ghcr.io/open-telemetry/opentelemetry-collector-releases/opentelemetry-collector-contrib:0.149.0
+    command: ["--config=/etc/otelcol/config.yaml"]
+    volumes:
+      - ./otel-collector.yaml:/etc/otelcol/config.yaml:ro
+    ports:
+      - "127.0.0.1:4317:4317"
+
+  jaeger:
+    profiles: ["observability"]
+    image: jaegertracing/all-in-one:1.68.0
+    environment:
+      COLLECTOR_OTLP_ENABLED: "true"
+    ports:
+      - "127.0.0.1:16686:16686"
+
+  prometheus:
+    profiles: ["observability"]
+    image: prom/prometheus:v3.2.1
+    volumes:
+      - ./prometheus.yaml:/etc/prometheus/prometheus.yml:ro
+    ports:
+      - "127.0.0.1:9090:9090"
+
+  grafana:
+    profiles: ["observability"]
+    image: grafana/grafana:11.5.2
+    ports:
+      - "127.0.0.1:3000:3000"
+
+  openbao-dev:
+    profiles: ["security"]
+    image: openbao/openbao:2.2.1
+    cap_add: ["IPC_LOCK"]
+    environment:
+      BAO_DEV_ROOT_TOKEN_ID: dev-only-token
+    command: ["server", "-dev", "-dev-listen-address=0.0.0.0:8200"]
+    ports:
+      - "127.0.0.1:8200:8200"
+
+  openbao:
+    profiles: ["security-prod"]
+    image: openbao/openbao:2.2.1
+    cap_add: ["IPC_LOCK"]
+    command: ["server", "-config=/etc/openbao/openbao.hcl"]
+    volumes:
+      - ./openbao.hcl:/etc/openbao/openbao.hcl:ro
+      - ${OPENBAO_CERTS_DIR:-../data/openbao-certs}:/etc/openbao/certs:ro
+      - openbao_data:/var/lib/openbao
+    ports:
+      - "127.0.0.1:8200:8200"
+    restart: unless-stopped
+
+volumes:
+  postgres_data:
+  qdrant_data:
+  documents_data:
+  openbao_data:

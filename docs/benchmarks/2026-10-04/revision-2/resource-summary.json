@@ -1,0 +1,67 @@
+{
+  "scope": "revision-2 load interval only; host-wide disk/RAM; sampled peaks, not continuous maxima",
+  "start": "2026-10-04T18:46:00.296286+00:00",
+  "end": "2026-10-04T18:56:06.820985+00:00",
+  "gpu": {
+    "samples": 121,
+    "peak_sm_percent": 100,
+    "peak_fb_mb_dmon": 72151,
+    "peak_power_w": 302,
+    "note": "FB is the dmon counter labelled MB; it is not nvidia-smi memory.used"
+  },
+  "host": {
+    "samples": 85,
+    "peak_used_ram_mib": 21785,
+    "min_available_ram_mib": 42503,
+    "ram_basis": "MemTotal minus MemAvailable; not application RSS"
+  },
+  "containers": {
+    "angry_kowalevski": {
+      "samples": 85,
+      "peak_cpu_percent": 39.67,
+      "peak_memory_usage_gib": 0.045
+    },
+    "research-benchmark-api-1": {
+      "samples": 85,
+      "peak_cpu_percent": 1.62,
+      "peak_memory_usage_gib": 3.001
+    },
+    "research-benchmark-frontend-1": {
+      "samples": 85,
+      "peak_cpu_percent": 0.18,
+      "peak_memory_usage_gib": 0.025
+    },
+    "research-benchmark-jaeger-1": {
+      "samples": 85,
+      "peak_cpu_percent": 0.88,
+      "peak_memory_usage_gib": 0.047
+    },
+    "research-benchmark-model-1": {
+      "samples": 85,
+      "peak_cpu_percent": 23.43,
+      "peak_memory_usage_gib": 5.027
+    },
+    "research-benchmark-postgres-1": {
+      "samples": 85,
+      "peak_cpu_percent": 4.69,
+      "peak_memory_usage_gib": 0.054
+    },
+    "research-benchmark-qdrant-1": {
+      "samples": 85,
+      "peak_cpu_percent": 1.36,
+      "peak_memory_usage_gib": 0.169
+    },
+    "research-benchmark-worker-1": {
+      "samples": 85,
+      "peak_cpu_percent": 386.22,
+      "peak_memory_usage_gib": 11.72
+    }
+  },
+  "disk": {
+    "samples": 85,
+    "device": "vda",
+    "peak_read_mib_s": 4.363,
+    "peak_write_mib_s": 0.706,
+    "note": "Whole device only; no sum of partition counters"
+  }
+}

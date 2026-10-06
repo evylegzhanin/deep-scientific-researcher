@@ -1,0 +1,21 @@
+{
+  "repo": "QuantTrio/Qwen3.5-9B-AWQ",
+  "revision": "938f8e3ef86c9d1e9bec3705e149694c172592f1",
+  "quantization_config": {
+    "quant_method": "awq",
+    "bits": 4,
+    "group_size": 128,
+    "version": "gemm",
+    "zero_point": true,
+    "modules_to_not_convert": [
+      "visual",
+      "linear_attn",
+      "self_attn",
+      "model.layers.0.",
+      "mtp"
+    ]
+  },
+  "architectures": [
+    "Qwen3_5ForConditionalGeneration"
+  ]
+}

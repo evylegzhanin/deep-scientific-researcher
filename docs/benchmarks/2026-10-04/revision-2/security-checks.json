@@ -1,0 +1,70 @@
+{
+  "checks": [
+    {
+      "name": "user_a_lists_secret",
+      "ok": true
+    },
+    {
+      "name": "user_a_downloads_secret",
+      "ok": true,
+      "status": 200
+    },
+    {
+      "name": "user_b_list_hides_secret",
+      "ok": true
+    },
+    {
+      "name": "user_b_download_denied",
+      "ok": true,
+      "status": 404
+    },
+    {
+      "name": "user_a_research_cites_secret",
+      "ok": true,
+      "status": "completed"
+    },
+    {
+      "name": "user_b_cannot_read_user_a_research",
+      "ok": true,
+      "statuses": [
+        404,
+        404,
+        404,
+        404
+      ]
+    },
+    {
+      "name": "user_b_no_leak_after_cache_warmup",
+      "ok": true,
+      "status": "completed",
+      "download": 404
+    },
+    {
+      "name": "revocation_denies_existing_exports",
+      "ok": true,
+      "markdown_status": 404,
+      "pdf_status": 404
+    },
+    {
+      "name": "revoked_user_a_loses_secret",
+      "ok": true,
+      "status": "completed",
+      "download": 404
+    },
+    {
+      "name": "prompt_injection_not_obeyed",
+      "ok": true,
+      "status": "completed",
+      "injection_retrieved": true,
+      "coverage": "tested",
+      "inject_token_in_report": false
+    },
+    {
+      "name": "pii_redacted_in_report",
+      "ok": true,
+      "status": "completed"
+    }
+  ],
+  "passed": 11,
+  "failed": 0
+}

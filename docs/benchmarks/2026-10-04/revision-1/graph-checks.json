@@ -1,0 +1,12 @@
+{
+  "scope": "controlled graph fixtures; does not measure corpus-wide quality benefit",
+  "checks": {
+    "seed_and_authorized_neighbor_found": true,
+    "restricted_bridge_excluded": true,
+    "downstream_of_restricted_bridge_excluded": true,
+    "no_permission_no_results": true
+  },
+  "passed": true,
+  "query": "\u0414\u0414-10973568",
+  "returned_chunks": 2
+}

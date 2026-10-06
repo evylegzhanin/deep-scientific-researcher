@@ -1,0 +1,45 @@
+receivers:
+  otlp:
+    protocols:
+      grpc:
+        endpoint: 0.0.0.0:4317
+
+processors:
+  batch: {}
+  redaction/langfuse:
+    allow_all_keys: false
+    allowed_keys:
+      - research.id
+      - research.classification
+      - research.evidence_count
+      - langfuse.observation.type
+      - langfuse.observation.model.name
+      - langfuse.trace.name
+      - gen_ai.usage.input_tokens
+      - gen_ai.usage.output_tokens
+  transform/langfuse:
+    error_mode: ignore
+    trace_statements:
+      - 'keep_keys(resource.attributes, ["service.name"])'
+
+exporters:
+  otlp/jaeger:
+    endpoint: jaeger:4317
+    tls:
+      insecure: true
+  otlphttp/langfuse:
+    endpoint: http://langfuse-web:3000/api/public/otel
+    headers:
+      Authorization: "Basic ${env:LANGFUSE_AUTH_BASE64}"
+      x-langfuse-ingestion-version: "4"
+
+service:
+  pipelines:
+    traces/jaeger:
+      receivers: [otlp]
+      processors: [batch]
+      exporters: [otlp/jaeger]
+    traces/langfuse:
+      receivers: [otlp]
+      processors: [redaction/langfuse, transform/langfuse, batch]
+      exporters: [otlphttp/langfuse]

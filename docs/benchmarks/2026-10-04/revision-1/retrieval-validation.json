@@ -1,0 +1,16 @@
+{
+  "embedding_dim": 1024,
+  "scores": [
+    0.9999934434890747,
+    2.1211917555774562e-05,
+    7.806025678291917e-06
+  ],
+  "scoring": "pretrained causal yes/no logits",
+  "threshold": 0.1,
+  "checks": {
+    "relevant_above_irrelevant": true,
+    "relevant_retained": true,
+    "unrelated_canary_rejected": true,
+    "embedding_dim_1024": true
+  }
+}

@@ -1,0 +1,17 @@
+{
+  "scope": "quality/load account sees only prepared corpus chunks; security A retains its fixtures",
+  "core_document_ids": [
+    "2dcdd040-7ef5-4c80-ae2d-24b3a762027a",
+    "adc53b16-cce1-420c-8255-6c003af65162",
+    "6dd9b792-90fd-45cb-aa18-8413edb882cc",
+    "479bb728-eac5-4ca0-b996-aa6c2fa88eed",
+    "b971da35-722c-4803-b6d3-6d160600ca58",
+    "5f4894ae-36b4-4680-a1ec-4bb4fb0147ef",
+    "a132dd49-9883-4c42-af49-fc2cb0196179"
+  ],
+  "core_documents": 7,
+  "core_chunks": 9,
+  "excluded_fixture_chunks": 2,
+  "permitted_chunks": 9,
+  "passed": true
+}

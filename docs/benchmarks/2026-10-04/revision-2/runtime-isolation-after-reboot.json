@@ -1,0 +1,89 @@
+{
+  "scope": "runtime containers; host remains connected; startup verification is recorded separately",
+  "network_internal": true,
+  "ipv6_enabled": false,
+  "checks": [
+    {
+      "service": "api",
+      "networks": [
+        "research-benchmark_default"
+      ],
+      "probes": [
+        {
+          "name": "external_dns",
+          "reachable": false,
+          "error": "gaierror",
+          "errno": -3
+        },
+        {
+          "name": "external_ipv4",
+          "reachable": false,
+          "error": "OSError",
+          "errno": 101
+        },
+        {
+          "name": "external_ipv6",
+          "reachable": false,
+          "error": "OSError",
+          "errno": 101
+        }
+      ],
+      "ok": true
+    },
+    {
+      "service": "worker",
+      "networks": [
+        "research-benchmark_default"
+      ],
+      "probes": [
+        {
+          "name": "external_dns",
+          "reachable": false,
+          "error": "gaierror",
+          "errno": -3
+        },
+        {
+          "name": "external_ipv4",
+          "reachable": false,
+          "error": "OSError",
+          "errno": 101
+        },
+        {
+          "name": "external_ipv6",
+          "reachable": false,
+          "error": "OSError",
+          "errno": 101
+        }
+      ],
+      "ok": true
+    },
+    {
+      "service": "model",
+      "networks": [
+        "research-benchmark_default"
+      ],
+      "probes": [
+        {
+          "name": "external_dns",
+          "reachable": false,
+          "error": "gaierror",
+          "errno": -3
+        },
+        {
+          "name": "external_ipv4",
+          "reachable": false,
+          "error": "OSError",
+          "errno": 101
+        },
+        {
+          "name": "external_ipv6",
+          "reachable": false,
+          "error": "OSError",
+          "errno": 101
+        }
+      ],
+      "ok": true
+    }
+  ],
+  "passed": true
+}

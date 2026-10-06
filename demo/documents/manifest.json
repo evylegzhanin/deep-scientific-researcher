@@ -1,0 +1,34 @@
+[
+  {
+    "filename": "owen-pd150-short.pdf",
+    "title": "ОВЕН ПД150 — краткое руководство, ред. 1.4",
+    "url": "https://docs.owen.ru/download/pdf/ozTIC.kr_pd150_1-ru-90719-1.4_a4.pdf",
+    "sha256": "450061f7971bec2ad93834e4627d8880447430b98915e9b20f62d88713f0eae2",
+    "pages": 2,
+    "bytes": 1299236
+  },
+  {
+    "filename": "owen-pd150-r-short.pdf",
+    "title": "ОВЕН ПД150-R — краткое руководство RS-485, ред. 1.5",
+    "url": "https://docs.owen.ru/download/pdf/2gdlO.kr_pd150-r_1-ru-90718-1.5_a4.pdf",
+    "sha256": "7c665080651e2d9a9b4614bdc8fee977beb9f74d784be4f624f1990edf3d9f90",
+    "pages": 2,
+    "bytes": 876272
+  },
+  {
+    "filename": "owen-pd150i-short.pdf",
+    "title": "ОВЕН ПД150И — краткое руководство, ред. 1.1",
+    "url": "https://docs.owen.ru/download/pdf/tXIQx.kr_pd150i_1-ru-124185-1.1.pdf",
+    "sha256": "99e903c57f4f44c52f43406d0173cd2aa252f4ec9d75c728da9161843a899112",
+    "pages": 2,
+    "bytes": 1533640
+  },
+  {
+    "filename": "owen-pd150-manual.pdf",
+    "title": "ОВЕН ПД150 — руководство по эксплуатации, ред. 1.15",
+    "url": "https://docs.owen.ru/download/pdf/fmO6G.re_pd150_1-ru-84237-1.15.pdf",
+    "sha256": "caf558cc1a7acffbff2219a991b8ab19842f4bdb553c04bfc16eb69d5a8fbb19",
+    "pages": 35,
+    "bytes": 981029
+  }
+]

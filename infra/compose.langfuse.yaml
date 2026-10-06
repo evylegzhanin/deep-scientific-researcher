@@ -1,0 +1,95 @@
+services:
+  lf-postgres:
+    profiles: [langfuse]
+    image: postgres:16-alpine
+    env_file: ../.env.langfuse
+    volumes:
+      - langfuse_postgres_data:/var/lib/postgresql/data
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U langfuse -d langfuse"]
+      interval: 5s
+      timeout: 3s
+      retries: 10
+    restart: unless-stopped
+
+  lf-clickhouse:
+    profiles: [langfuse]
+    image: clickhouse/clickhouse-server:25.12
+    env_file: ../.env.langfuse
+    environment:
+      CLICKHOUSE_DB: default
+    volumes:
+      - langfuse_clickhouse_data:/var/lib/clickhouse
+      - langfuse_clickhouse_logs:/var/log/clickhouse-server
+    healthcheck:
+      test: ["CMD-SHELL", "wget -q -O /dev/null http://localhost:8123/ping"]
+      interval: 5s
+      timeout: 5s
+      retries: 10
+    restart: unless-stopped
+
+  lf-redis:
+    profiles: [langfuse]
+    image: redis:7
+    env_file: ../.env.langfuse
+    command: ["sh", "-c", "exec redis-server --requirepass \"$$REDIS_AUTH\" --maxmemory-policy noeviction"]
+    volumes:
+      - langfuse_redis_data:/data
+    restart: unless-stopped
+
+  lf-minio:
+    profiles: [langfuse]
+    image: cgr.dev/chainguard/minio:latest
+    env_file: ../.env.langfuse
+    entrypoint: sh
+    command: -c 'mkdir -p /data/langfuse && minio server --address ":9000" /data'
+    volumes:
+      - langfuse_minio_data:/data
+    restart: unless-stopped
+
+  langfuse-worker:
+    profiles: [langfuse]
+    image: langfuse/langfuse-worker:4
+    env_file: ../.env.langfuse
+    depends_on:
+      lf-postgres: {condition: service_healthy}
+      lf-clickhouse: {condition: service_healthy}
+      lf-redis: {condition: service_started}
+      lf-minio: {condition: service_started}
+    restart: unless-stopped
+
+  langfuse-web:
+    profiles: [langfuse]
+    image: langfuse/langfuse:4
+    env_file: ../.env.langfuse
+    ports:
+      - "127.0.0.1:3001:3000"
+    depends_on:
+      lf-postgres: {condition: service_healthy}
+      lf-clickhouse: {condition: service_healthy}
+      lf-redis: {condition: service_started}
+      lf-minio: {condition: service_started}
+    restart: unless-stopped
+
+  otel-collector:
+    env_file: ../.env.langfuse
+    command: ["--config=/etc/otelcol/langfuse.yaml"]
+    volumes:
+      - ./otel-collector.langfuse.yaml:/etc/otelcol/langfuse.yaml:ro
+    depends_on:
+      - langfuse-web
+
+  api:
+    environment:
+      OTEL_EXPORTER_OTLP_ENDPOINT: http://otel-collector:4317
+
+  worker:
+    environment:
+      OTEL_EXPORTER_OTLP_ENDPOINT: http://otel-collector:4317
+
+volumes:
+  langfuse_postgres_data:
+  langfuse_clickhouse_data:
+  langfuse_clickhouse_logs:
+  langfuse_redis_data:
+  langfuse_minio_data:

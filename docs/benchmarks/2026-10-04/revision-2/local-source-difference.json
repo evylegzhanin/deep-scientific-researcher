@@ -1,0 +1,8 @@
+{
+  "scope": "comparison of local workspace with verified server runtime",
+  "different_file": "backend/worker.py",
+  "difference": "local worker imports traceback and calls traceback.print_exc() in the exception handler; measured worker does not",
+  "local_sha256": "aa8b65c528cab97d4f529ff2c3b44a4303a2c27f9833db1c209e8f72aa088541",
+  "runtime_sha256": "d9c0bea9d8f738f4fbc5e7546a8ab2898e4a2f12ea900afd1759948804b6184b",
+  "other_backend_files_match": true
+}

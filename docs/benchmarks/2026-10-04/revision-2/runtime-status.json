@@ -1,0 +1,50 @@
+{
+  "captured_at": "2026-10-04T19:53:42.101781+00:00",
+  "services": {
+    "api": {
+      "running": true,
+      "image_id": "sha256:98c4c8ce2b0a67f7fa8797931b0dda2a7e33a54d56da3b0c62508154f0e5227a",
+      "restart_policy": "unless-stopped"
+    },
+    "worker": {
+      "running": true,
+      "image_id": "sha256:98c4c8ce2b0a67f7fa8797931b0dda2a7e33a54d56da3b0c62508154f0e5227a",
+      "restart_policy": "unless-stopped"
+    },
+    "model": {
+      "running": true,
+      "image_id": "sha256:8a69ffad015f138d7170c4ddc429e230a3bc1c1719f67e14324749df200a4b90",
+      "restart_policy": "unless-stopped"
+    },
+    "postgres": {
+      "running": true,
+      "image_id": "sha256:721873c34ceb9f8d8fc265984940dc982404c105f19ad51be9fdc5970a6080ea",
+      "restart_policy": "unless-stopped"
+    },
+    "qdrant": {
+      "running": true,
+      "image_id": "sha256:12364fe851b9f17356fc88189fc06d1b521262e04659ec7345975b00c9246a10",
+      "restart_policy": "unless-stopped"
+    },
+    "frontend": {
+      "running": true,
+      "image_id": "sha256:1c7ca6725ad1ed700292c387d9d351a4a7f1211aa8c09a94f8ad3e0da3a1e066",
+      "restart_policy": "unless-stopped"
+    },
+    "jaeger": {
+      "running": true,
+      "image_id": "sha256:6279882637ae03e70f519965d2ba5ca84cb785f4baf4f0d7237e827a37c33a42",
+      "restart_policy": "unless-stopped"
+    }
+  },
+  "gpu_snapshot": "72111, 0",
+  "metrics_scope": "snapshot after reboot and final quality checks; counters do not cover earlier load run",
+  "vllm_selected_metrics": [
+    "vllm:num_requests_running{engine=\"0\",model_name=\"research-text\"} 0.0",
+    "vllm:num_requests_waiting{engine=\"0\",model_name=\"research-text\"} 0.0",
+    "vllm:num_requests_waiting_by_reason{engine=\"0\",model_name=\"research-text\",reason=\"capacity\"} 0.0",
+    "vllm:num_requests_waiting_by_reason{engine=\"0\",model_name=\"research-text\",reason=\"deferred\"} 0.0",
+    "vllm:kv_cache_usage_perc{engine=\"0\",model_name=\"research-text\"} 0.0",
+    "vllm:num_preemptions_total{engine=\"0\",model_name=\"research-text\"} 0.0"
+  ]
+}

@@ -1,0 +1,32 @@
+name: deep-scientific-researcher-gpu
+services:
+  model:
+    image: vllm/vllm-openai:v0.30.0
+    ipc: host
+    runtime: nvidia
+    environment:
+      HF_HUB_OFFLINE: "1"
+      TRANSFORMERS_OFFLINE: "1"
+    volumes:
+      - /srv/research-models:/models:ro
+    command:
+      - --model
+      - /models/Qwen3.8-27B
+      - --served-model-name
+      - research-text
+      - --max-model-len
+      - "8192"
+      - --gpu-memory-utilization
+      - "0.90"
+      - --enable-prefix-caching
+      - --host
+      - 0.0.0.0
+    ports:
+      - "${GPU_BIND_IP:-127.0.0.1}:8001:8000"
+    deploy:
+      resources:
+        reservations:
+          devices:
+            - driver: nvidia
+              count: 1
+              capabilities: [gpu]

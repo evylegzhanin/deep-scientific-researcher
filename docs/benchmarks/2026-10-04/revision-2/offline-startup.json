@@ -1,0 +1,28 @@
+{
+  "scope": "process startup after host reboot; staged weights and existing compiler cache; host remains connected",
+  "started_at": "2026-10-04T19:41:20.468932+00:00",
+  "model_was_stopped": true,
+  "network_internal": true,
+  "ipv6_enabled": false,
+  "offline_environment": true,
+  "model_image_id": "sha256:8a69ffad015f138d7170c4ddc429e230a3bc1c1719f67e14324749df200a4b90",
+  "passed": true,
+  "models_endpoint": {
+    "status": 200
+  },
+  "readiness_observed_after_s": 201.868,
+  "generation": {
+    "status": 200,
+    "nonempty": true,
+    "usage": {
+      "prompt_tokens": 23,
+      "total_tokens": 34,
+      "completion_tokens": 11,
+      "prompt_tokens_details": null,
+      "completion_tokens_details": null
+    },
+    "finish_reason": "stop"
+  },
+  "model_started_at": "2026-10-04T19:41:21.442272334Z",
+  "finished_at": "2026-10-04T19:44:43.006945+00:00"
+}
